@@ -18,55 +18,62 @@ const Navbar = () => {
             // An error happened.
         });
     }
-    console.log(user)
+    // console.log(user)
 
     return (
-        <div className=" grid gap-3 xl:navbar xl:flex xl:justify-between font-mono py-10 mb-10  relative">
-            <div className="flex-wrap md:flex ">
+        <div className=" grid gap-3  xl:flex xl:justify-between font-mono py-10 mb-10  relative">
+            {/* title area  start*/}
+            <div className="flex-wrap md:flex md:flex-nowrap md:w-full ">
                 <img className=' w-10 rounded-full ml-2' src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80" alt="" />
                 <button className=" m-0 font-bold text-3xl">Language Learning <span className='text-5xl font-extrabold text-purple-600'>Zone</span></button>
             </div>
-            <div className="flex">
-                <div className=" grid  md:flex md:flex-row-reverse text-blue-900 p-0 md:w-full md:justify-between  ">
-
-                    <div className=' flex  justify-end  w-screen md:w-auto '>
+            {/* title area end */}
 
 
+            {/* link area start  */}
 
-                        <div className='mx-5 w-32 absolute top-0 right-0'>
-                            <button onClick={handletheme}> {theme ? ' Theme : Dark' : 'Theme : Light'}  </button>
-                        </div>
-
+            <div className=" grid  md:flex md:flex-row-reverse text-blue-900 p-0 md:w-full md:justify-between  ">
 
 
-                        <div className='mr-3 '>
-                            {
-                                user ? <div className='tooltip' data-tip={user?.displayName} >
+                {/* profile +signout */}
 
-                                    <div className='flex'>
-                                        <img className='w-7' src={user?.photoURL} alt="" />
-                                        <button onClick={handleLogOut} className='font-extrabold '> sign out</button>
-                                    </div>
+                <div className=' flex  justify-end  w-screen sm:w-auto md:w-auto '>
+                    <div className='mx-5 w-32 absolute top-0 right-0'>
+                        <button onClick={handletheme}> {theme ? ' Theme : Dark' : 'Theme : Light'}  </button>
+                    </div>
+                    <div className='mr-3 '>
+                        {
+                            user ? <div className='tooltip' data-tip={user?.displayName} >
+
+                                <div className='flex'>
+                                    <img className='w-7' src={user?.photoURL} alt="" />
+                                    <button onClick={handleLogOut} className='font-extrabold '> sign out</button>
                                 </div>
-                                    :
-                                    <div className='text-xl my-2'> <FaUser></FaUser>  </div>
-                            }
-                        </div>
-
+                            </div>
+                                :
+                                <div className='text-xl my-2'> <FaUser></FaUser>  </div>
+                        }
                     </div>
 
-                    <div className=' flex flex-wrap justify-around grow md:bg-orange-400 lg:bg-slate-200 '>
-                        <p className='m-1 hover:text-red-600'><Link to={'/'}>Home</Link></p>
-                        <p className='m-1 hover:text-red-600'><Link to={'/courses'}> Course</Link></p>
-                        <p className='m-1 hover:text-red-600'><Link to={'/faq'}> FAQ</Link></p>
-                        <p className='m-1 hover:text-red-600'><Link to={'/blog'}> Blog</Link></p>
-                        <p className='m-1 hover:text-red-600'><Link to={'/login'}>Login</Link></p>
-                        <p className='m-1 hover:text-red-600'><Link to={'/signup'}>Sign Up</Link></p>
-                    </div>
+                </div>
+
+
+                {/* linkers are here */}
+
+                <div className=' flex flex-wrap grow justify-between  bg-red-400  lg:bg-slate-200 '>
+                    <p className='m-1 hover:text-red-600'><Link to={'/'}>Home</Link></p>
+                    <p className='m-1 hover:text-red-600'><Link to={'/courses'}> Course</Link></p>
+                    <p className='m-1 hover:text-red-600'><Link to={'/faq'}> FAQ</Link></p>
+                    <p className='m-1 hover:text-red-600'><Link to={'/blog'}> Blog</Link></p>
+                    <p className='m-1 hover:text-red-600'><Link to={'/login'}>Login</Link></p>
+                    <p className='m-1 hover:text-red-600'><Link to={'/signup'}>Sign Up</Link></p>
 
 
                 </div>
+
+
             </div>
+
 
         </div>
     );
