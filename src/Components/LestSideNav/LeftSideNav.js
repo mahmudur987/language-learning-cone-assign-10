@@ -15,7 +15,7 @@ const LeftSideNav = () => {
 
     return (
         <div className='p-5 border border-orange-600 m-2 rounded-lg'>
-            <h1 className='text-2xl font-bold'>our latest addition  </h1>
+            <h1 className='text-2xl font-bold'>Our Latest Addition  </h1>
 
             <div className='font-bold text-small  '>
                 {

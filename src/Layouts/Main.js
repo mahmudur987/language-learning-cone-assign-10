@@ -7,11 +7,11 @@ const Main = () => {
     return (
         <div>
             <div>  <Headers></Headers>  </div>
-            <div className='grid grid-cols-8'>
-                <div className='grid col-span-2'>
+            <div className='grid  md:grid-cols-8'>
+                <div className='grid md:col-span-2'>
                     <LeftSideNav></LeftSideNav>
                 </div>
-                <div className='grid col-span-6'>
+                <div className='grid md:col-span-6'>
                     <Outlet></Outlet>
 
                 </div>
