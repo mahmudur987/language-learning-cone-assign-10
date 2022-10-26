@@ -52,11 +52,11 @@ const CourseDetail = () => {
                 </div>
 
                 <div className='m-5'>
-                    <h3 className='text-2xl underline'>Course Price {price}</h3>
+                    <h3 className='text-2xl underline'>You will Explore</h3>
                     <p className='font-bold'>  {exploring} </p>
 
                 </div>
-
+                <h3 className='text-2xl'>Course Price {price} $</h3>
 
                 <div className="card-actions flex justify-between">
                     <button className="btn btn-secondary">Go  Course list</button>
