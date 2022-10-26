@@ -6,7 +6,7 @@ const Courses = () => {
 
     const courses = useLoaderData();
     return (
-        <div className='text-center border border-red-700'>
+        <div className='text-center border border-red-700 p-2'>
 
             <h1 className='text-3xl font-bold text-yellow-700'>All Courses </h1>
 

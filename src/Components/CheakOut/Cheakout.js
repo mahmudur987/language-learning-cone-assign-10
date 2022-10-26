@@ -19,7 +19,7 @@ const Cheakout = () => {
         });
     }
     return (
-        <div id='premmium' className='p-4 border border-blue-600 m-5 rounded-lg grid md:grid-cols-2 relative'>
+        <div id='premmium' className='p-4 border border-blue-600 m-5 rounded-lg grid grid-cols-1 lg :grid-cols-2 relative'>
             <div>
                 <h1 className='text-3xl text-center font-extrabold text-green-700'>Premmium Access </h1>
                 <h1 className='text-2xl font-bold m-5 text-rose-700 '> Course Name :{cart.name}</h1>
@@ -28,12 +28,13 @@ const Cheakout = () => {
                 <h1 className='text-xl font-bold m-5 '> Phone number :{cart.phone}</h1>
                 <h1 className='text-xl font-bold m-5 '> Price:{cart.price}</h1>
 
-                <button className='btn btn-info font-bold'>Confirm</button>
+
             </div>
             <div>
-                <h1 className='text-xl text-center font-extrabold '>Student name : <span className='text-2xl font-mono'>{user?.displayName}</span> </h1>
-                <h1 className='text-xl text-center font-extrabold '>Student Email : <span className='text-2xl font-mono'>{user?.email}</span> </h1>
+                <h1 className='text-xl md:text-center font-extrabold '>Student name : <span className='text-2xl font-mono'>{user?.displayName}</span> </h1>
+                <h1 className='text-xl  md:text-center font-extrabold '>Student Email : <span className='md:text-2xl text-lg   font-mono'>{user?.email}</span> </h1>
 
+                <button className='btn btn-info font-bold'>Confirm</button>
 
                 <button onClick={downloadpdf} className='btn btn-info font-bold absolute bottom-0 right-1'> <FaDownload></FaDownload>  </button>
             </div>
