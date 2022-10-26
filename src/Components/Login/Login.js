@@ -5,10 +5,11 @@ import { FaGoogle, FaGithub } from 'react-icons/fa';
 import { GoogleAuthProvider, GithubAuthProvider } from "firebase/auth"
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { authContext } from '../../UserContext/UserContext';
-
+import toast from 'react-hot-toast';
 const Login = () => {
-    const { login, googleLogIn, githubLogIn } = useContext(authContext)
-    const [error, SetError] = useState('')
+    const { login, googleLogIn, githubLogIn, passwordReset } = useContext(authContext)
+    const [error, SetError] = useState('');
+    const [Email, SetEmail] = useState('')
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
@@ -17,7 +18,6 @@ const Login = () => {
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
-
         login(email, password).then((result) => {
             const user = result.user;
             console.log(user);
@@ -29,19 +29,21 @@ const Login = () => {
                 SetError(errorMessage)
                 console.error(error)
             });
-        console.log(email, password)
+        // console.log(email, password)
     }
     const handlegoogleLogin = () => {
         const googleprovider = new GoogleAuthProvider()
         googleLogIn(googleprovider).then(result => {
             const user = result.user;
             navigate(from, { replace: true });
+            navigate(from, { replace: true });
+
             console.log(user)
         }).catch(error => {
             const errormasage = error.message;
             SetError(errormasage)
         })
-    }
+    };
     const handleGitHubLogin = () => {
         const gitprovider = new GithubAuthProvider()
         githubLogIn(gitprovider).then(result => {
@@ -53,6 +55,24 @@ const Login = () => {
             const errormasage = error.message;
             SetError(errormasage)
         })
+    };
+    const handleEmail = (event) => {
+        SetEmail(event.target.value)
+
+    }
+
+    const handlePasswordReset = (event) => {
+        if (Email) {
+            toast.success(`pasword Reset Email Send to ${Email}`)
+        } else {
+            toast.error('Enter a valid email address')
+        }
+        passwordReset(Email).then(() => {
+
+        }).catch(error => {
+            console.error(error)
+        })
+        console.log(Email);
     }
 
     return (
@@ -69,7 +89,7 @@ const Login = () => {
                             <label className="label">
                                 <span className="label-text">Email</span>
                             </label>
-                            <input name='email' type="email" placeholder="email" className="input input-bordered" />
+                            <input onChange={handleEmail} name='email' type="email" placeholder="email" className="input input-bordered" />
                         </div>
 
                         <div className="form-control">
@@ -78,7 +98,7 @@ const Login = () => {
                             </label>
                             <input name='password' type="password" placeholder="password" className="input input-bordered" />
                             <label className="label">
-                                <Link href="#" className="label-text-alt link link-hover">Forgot password?</Link>
+                                <Link onClick={handlePasswordReset} className="label-text-alt link link-hover">Forgot password?</Link>
                             </label>
                             <p className='text-red-500'>  {error}  </p>
                         </div>

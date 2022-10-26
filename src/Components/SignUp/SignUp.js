@@ -1,13 +1,15 @@
 import React from 'react';
 import { useState } from 'react';
 import { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { authContext } from '../../UserContext/UserContext';
 
 const SignUp = () => {
     const { signUp, updateUserProfile } = useContext(authContext)
     const [error, SetError] = useState('')
-
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
     const handleSubmit = (event) => {
         event.preventDefault()
         const form = event.target;
@@ -18,7 +20,9 @@ const SignUp = () => {
 
         signUp(email, password).then((result) => {
             const user = result.user;
-            handleUpdateProfile(name, photoURL)
+            handleUpdateProfile(name, photoURL);
+            navigate(from, { replace: true });
+
             console.log(user)
         })
             .catch((error) => {

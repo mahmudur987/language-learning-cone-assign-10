@@ -6,6 +6,7 @@ import Courses from "../../Components/Courses/Courses";
 import Home from "../../Components/Home/Home";
 import Login from "../../Components/Login/Login";
 import Maintain from "../../Components/Maintain/Maintain";
+import Profile from "../../Components/Profile/Profile";
 import SignUp from "../../Components/SignUp/SignUp";
 import Main from "../../Layouts/Main";
 import PrivatRoutes from "../PrivetRoute/PrivetRoute";
@@ -56,6 +57,10 @@ const route = createBrowserRouter([
             {
                 path: "/cheakout",
                 element: <PrivatRoutes><Cheakout></Cheakout></PrivatRoutes>
+            },
+            {
+                path: "/profile",
+                element: <PrivatRoutes><Profile></Profile></PrivatRoutes>
             },
             {
                 path: '*',

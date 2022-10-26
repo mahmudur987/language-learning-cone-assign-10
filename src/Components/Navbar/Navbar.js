@@ -41,17 +41,17 @@ const Navbar = () => {
                     <div className='mx-5 w-32 absolute top-0 right-0'>
                         <button onClick={handletheme}> {theme ? ' Theme : Dark' : 'Theme : Light'}  </button>
                     </div>
-                    <div className='mr-3 '>
+                    <div className='mx-6 '>
                         {
                             user ? <div className='tooltip' data-tip={user?.displayName} >
 
-                                <div className='flex'>
-                                    <img className='w-7' src={user?.photoURL} alt="" />
-                                    <button onClick={handleLogOut} className='font-extrabold '> sign out</button>
+                                <div className=' flex flex-col  items-center'>
+                                    <Link to={'/profile'}>  <img className='w-10 rounded-3xl ' src={user?.photoURL} alt="" /> </Link>
+                                    <button onClick={handleLogOut} className='font-extrabold mt-5 '> sign out</button>
                                 </div>
                             </div>
                                 :
-                                <div className='text-xl my-2'> <FaUser></FaUser>  </div>
+                                <div className='text-xl mx-8'> <FaUser></FaUser>  </div>
                         }
                     </div>
 
@@ -60,7 +60,7 @@ const Navbar = () => {
 
                 {/* linkers are here */}
 
-                <div className=' flex flex-wrap grow justify-between  bg-red-400  lg:bg-slate-200 '>
+                <div className=' flex flex-wrap grow justify-between '>
                     <p className='m-1 hover:text-red-600'><Link to={'/'}>Home</Link></p>
                     <p className='m-1 hover:text-red-600'><Link to={'/courses'}> Course</Link></p>
                     <p className='m-1 hover:text-red-600'><Link to={'/faq'}> FAQ</Link></p>
