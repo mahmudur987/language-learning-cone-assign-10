@@ -5,6 +5,7 @@ import CourseDetail from "../../Components/CourseDetail/CourseDetail";
 import Courses from "../../Components/Courses/Courses";
 import Home from "../../Components/Home/Home";
 import Login from "../../Components/Login/Login";
+import Maintain from "../../Components/Maintain/Maintain";
 import SignUp from "../../Components/SignUp/SignUp";
 import Main from "../../Layouts/Main";
 import PrivatRoutes from "../PrivetRoute/PrivetRoute";
@@ -58,14 +59,14 @@ const route = createBrowserRouter([
             },
             {
                 path: '*',
-                element: <div> <h1>this site  is under maintanance</h1> </div>
+                element: <Maintain></Maintain>
 
             }
         ]
     },
     {
         path: '*',
-        element: <div> <h1>this site  is under maintanance</h1> </div>
+        element: <Maintain></Maintain>
     }
 ])
 
