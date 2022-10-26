@@ -3,6 +3,8 @@ import { Link, useLoaderData } from 'react-router-dom';
 import { authContext } from '../../UserContext/UserContext';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
+import { FaDownload } from 'react-icons/fa';
+
 const CourseDetail = () => {
     const { SetCart } = useContext(authContext)
     const course = useLoaderData();
@@ -25,7 +27,7 @@ const CourseDetail = () => {
             <h1 className='text-3xl text-center font-bolder text-green-500 m-10'  >{title}  </h1>
 
 
-            <figure><img src="https://placeimg.com/400/225/arch" alt="Shoes" /></figure>
+            <figure><img src={course.picture} alt="Shoes" /></figure>
             <div className="card-body">
 
                 <h2 className="card-title font-bold  text-2xl">
@@ -60,7 +62,7 @@ const CourseDetail = () => {
 
                 <div className="card-actions flex justify-between">
                     <button className="btn btn-secondary">Go  Course list</button>
-                    <button onClick={downloadpdf} className="btn absolute top-0 right-0">Download PDF</button>
+                    <button onClick={downloadpdf} className="btn absolute top-0 right-0">pdf <FaDownload></FaDownload>  </button>
                     <Link to={'/cheakout'}>
                         <button onClick={() => handleCart(course)} className="btn btn-accent"> Get Premium Access</button>
                     </Link>

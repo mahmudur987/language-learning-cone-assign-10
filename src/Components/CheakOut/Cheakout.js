@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import { authContext } from '../../UserContext/UserContext';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
-
+import { FaDownload } from 'react-icons/fa';
 
 
 
@@ -35,7 +35,7 @@ const Cheakout = () => {
                 <h1 className='text-xl text-center font-extrabold '>Student Email : <span className='text-2xl font-mono'>{user?.email}</span> </h1>
 
 
-                <button onClick={downloadpdf} className='btn btn-info font-bold absolute bottom-0 right-1'>Download pdf</button>
+                <button onClick={downloadpdf} className='btn btn-info font-bold absolute bottom-0 right-1'> <FaDownload></FaDownload>  </button>
             </div>
 
 

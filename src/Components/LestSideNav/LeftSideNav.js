@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 const LeftSideNav = () => {
     const [courses, SetCourses] = useState([]);
     useEffect(() => {
-        const url = 'http://localhost:5000/courses'
+        const url = 'https://language-learning-server.vercel.app/courses'
         fetch(url).then(res => res.json()).then(data => SetCourses(data))
     }, [])
 

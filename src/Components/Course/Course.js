@@ -9,7 +9,7 @@ const Course = ({ course }) => {
     // console.log(course)
     return (
         <div className="card card-compact  bg-green-100 shadow-xl">
-            <figure><img src="https://placeimg.com/400/225/arch" alt="Shoes" /></figure>
+            <figure><img className='h-48 w-full' src={picture} alt="Shoes" /></figure>
             <div className="card-body text-start">
                 <h2 className="card-title font-extrabold text-emerald-800">{name}</h2>
                 <p> Instractor : {company} </p>
