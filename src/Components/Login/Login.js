@@ -98,7 +98,7 @@ const Login = () => {
                             </label>
                             <input required name='password' type="password" placeholder="password" className="input input-bordered" />
                             <label className="label">
-                                <Link onClick={handlePasswordReset} className="label-text-alt link link-hover">Forgot password?</Link>
+                                <Link onClick={handlePasswordReset} className="label-text-alt link link-hover">Reset password?</Link>
                             </label>
                             <p className='text-red-500'>  {error}  </p>
                         </div>
