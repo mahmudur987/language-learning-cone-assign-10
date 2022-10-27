@@ -6,8 +6,8 @@ import { FaUser } from 'react-icons/fa';
 import { useState } from 'react';
 
 const Navbar = () => {
-    const { user, logout } = useContext(authContext);
-    const [theme, SetTheme] = useState(true);
+    const { user, logout, theme, SetTheme } = useContext(authContext);
+    // const [theme, SetTheme] = useState(true);
     const handletheme = () => {
         SetTheme(!theme)
     }
@@ -46,7 +46,9 @@ const Navbar = () => {
                             user ? <div className='tooltip' data-tip={user?.displayName} >
 
                                 <div className=' flex flex-col  items-center'>
-                                    <Link to={'/profile'}>  <img className='w-10 rounded-3xl ' src={user?.photoURL} alt="" /> </Link>
+                                    <Link to={'/profile'}>  <img className='w-10 rounded-3xl '
+                                        src={user ? user?.photoURL
+                                            : 'https://w7.pngwing.com/pngs/340/956/png-transparent-profile-user-icon-computer-icons-user-profile-head-ico-miscellaneous-black-desktop-wallpaper.png'} alt="" /> </Link>
                                     <button onClick={handleLogOut} className='font-extrabold mt-5 '> sign out</button>
                                 </div>
                             </div>
