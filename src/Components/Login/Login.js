@@ -89,14 +89,14 @@ const Login = () => {
                             <label className="label">
                                 <span className="label-text">Email</span>
                             </label>
-                            <input onChange={handleEmail} name='email' type="email" placeholder="email" className="input input-bordered" />
+                            <input required onChange={handleEmail} name='email' type="email" placeholder="email" className="input input-bordered" />
                         </div>
 
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Password</span>
                             </label>
-                            <input name='password' type="password" placeholder="password" className="input input-bordered" />
+                            <input required name='password' type="password" placeholder="password" className="input input-bordered" />
                             <label className="label">
                                 <Link onClick={handlePasswordReset} className="label-text-alt link link-hover">Forgot password?</Link>
                             </label>

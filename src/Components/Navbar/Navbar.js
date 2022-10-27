@@ -47,7 +47,7 @@ const Navbar = () => {
 
                                 <div className=' flex flex-col  items-center'>
                                     <Link to={'/profile'}>  <img className='w-10 rounded-3xl '
-                                        src={user ? user?.photoURL
+                                        src={user ? user.photoURL
                                             : 'https://w7.pngwing.com/pngs/340/956/png-transparent-profile-user-icon-computer-icons-user-profile-head-ico-miscellaneous-black-desktop-wallpaper.png'} alt="" /> </Link>
                                     <button onClick={handleLogOut} className='font-extrabold mt-5 '> sign out</button>
                                 </div>
