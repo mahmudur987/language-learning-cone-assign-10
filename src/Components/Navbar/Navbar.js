@@ -21,7 +21,7 @@ const Navbar = () => {
     // console.log(user)
 
     return (
-        <div className=" grid gap-3  xl:flex xl:justify-between font-mono py-10 mb-10  relative">
+        <div className=" grid gap-3 bg-purple-100  xl:flex xl:justify-between font-mono py-10 mb-10  relative">
             {/* title area  start*/}
             <div className="flex-wrap md:flex md:flex-nowrap md:w-full ">
                 <img className=' w-10 rounded-full ml-2' src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80" alt="" />
@@ -32,7 +32,7 @@ const Navbar = () => {
 
             {/* link area start  */}
 
-            <div className=" grid  md:flex md:flex-row-reverse text-blue-900 p-0 md:w-full md:justify-between  ">
+            <div className=" grid  md:flex md:flex-row-reverse text-blue-900 p-0 md:w-full  ">
 
 
                 {/* profile +signout */}
@@ -41,7 +41,7 @@ const Navbar = () => {
                     <div className='mx-5 w-32 absolute top-0 right-0'>
                         <button onClick={handletheme}> {theme ? ' Theme : Dark' : 'Theme : Light'}  </button>
                     </div>
-                    <div className='mx-6 '>
+                    <div className='mx-2 w-24 '>
                         {
                             user ? <div className='tooltip' data-tip={user?.displayName} >
 
@@ -62,13 +62,14 @@ const Navbar = () => {
 
                 {/* linkers are here */}
 
-                <div className=' flex flex-wrap grow justify-between '>
-                    <p className='m-1 hover:text-red-600'><Link to={'/'}>Home</Link></p>
-                    <p className='m-1 hover:text-red-600'><Link to={'/courses'}> Course</Link></p>
-                    <p className='m-1 hover:text-red-600'><Link to={'/faq'}> FAQ</Link></p>
-                    <p className='m-1 hover:text-red-600'><Link to={'/blog'}> Blog</Link></p>
-                    <p className='m-1 hover:text-red-600'><Link to={'/login'}>Login</Link></p>
-                    <p className='m-1 hover:text-red-600'><Link to={'/signup'}>Sign Up</Link></p>
+                <div className='grid grid-cols-3 md:grid-flow-col '>
+                    <p className='mx-3 text-amber-800  hover:text-blue-500'><Link to={'/courses'}> Course</Link></p>
+                    <p className='mx-6 text-amber-800  hover:text-blue-500'><Link to={'/faq'}> FAQ</Link></p>
+                    <p className='mx-3 text-amber-800  hover:text-blue-500'><Link to={'/blog'}> Blog</Link></p>
+                    <p className='mx-3 text-amber-800  hover:text-blue-500'><Link to={'/'}>Home</Link></p>
+                    <p className='mx-3 text-amber-800  hover:text-blue-500'><Link to={'/login'}>Login</Link></p>
+                    <p className='mx-3 text-amber-800  hover:text-blue-500'><Link to={'/signup'}>Sign Up</Link></p>
+                    <p className='mx-3 text-amber-800  hover:text-blue-500'><Link to={'/liflet'}>Leaflet</Link></p>
 
 
                 </div>

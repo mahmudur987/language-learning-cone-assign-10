@@ -4,6 +4,7 @@ import Cheakout from "../../Components/CheakOut/Cheakout";
 import CourseDetail from "../../Components/CourseDetail/CourseDetail";
 import Courses from "../../Components/Courses/Courses";
 import Home from "../../Components/Home/Home";
+import Leaflet from "../../Components/Leaflet/Leaflet";
 import Login from "../../Components/Login/Login";
 import Maintain from "../../Components/Maintain/Maintain";
 import Profile from "../../Components/Profile/Profile";
@@ -61,6 +62,10 @@ const route = createBrowserRouter([
             {
                 path: "/profile",
                 element: <PrivatRoutes><Profile></Profile></PrivatRoutes>
+            },
+            {
+                path: "/liflet",
+                element: <Leaflet></Leaflet>
             },
             {
                 path: '*',
