@@ -63,10 +63,10 @@ const Navbar = () => {
                 {/* linkers are here */}
 
                 <div className='grid grid-cols-3 md:grid-flow-col '>
+                    <p className='mx-3 text-amber-800  hover:text-blue-500'><Link to={'/'}>Home</Link></p>
                     <p className='mx-3 text-amber-800  hover:text-blue-500'><Link to={'/courses'}> Course</Link></p>
                     <p className='mx-6 text-amber-800  hover:text-blue-500'><Link to={'/faq'}> FAQ</Link></p>
                     <p className='mx-3 text-amber-800  hover:text-blue-500'><Link to={'/blog'}> Blog</Link></p>
-                    <p className='mx-3 text-amber-800  hover:text-blue-500'><Link to={'/'}>Home</Link></p>
                     <p className='mx-3 text-amber-800  hover:text-blue-500'><Link to={'/login'}>Login</Link></p>
                     <p className='mx-3 text-amber-800  hover:text-blue-500'><Link to={'/signup'}>Sign Up</Link></p>
                     <p className='mx-3 text-amber-800  hover:text-blue-500'><Link to={'/liflet'}>Leaflet</Link></p>
