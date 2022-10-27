@@ -13,7 +13,7 @@ const UserContext = ({ children }) => {
     const [user, SetUser] = useState('');
     const [loading, Setloading] = useState(true);
     const [cart, SetCart] = useState({});
-    const [theme, SetTheme] = useState(true);
+    const [theme, SetTheme] = useState(false);
 
     const signUp = (email, password) => {
         Setloading(true)
