@@ -17,24 +17,23 @@ const SignUp = () => {
     event.preventDefault();
     const form = event.target;
     const name = form.name.value;
-    const photoURL = form.photoUrl;
+    const photoURL = form.photoUrl.value;
     const email = form.email.value;
     const password = form.password.value;
 
-    // signUp(email, password).then((result) => {
-    //     const user = result.user;
-    //     handleUpdateProfile(name, photoURL);
-    //     navigate(from, { replace: true });
+    signUp(email, password)
+      .then((result) => {
+        const user = result.user;
+        handleUpdateProfile(name, photoURL);
+        navigate(from, { replace: true });
 
-    //     console.log(user)
-    // })
-    //     .catch((error) => {
-
-    //         const errorMessage = error.message;
-    //         SetError(errorMessage)
-    //         console.error(error)
-
-    //     });
+        console.log(user);
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        SetError(errorMessage);
+        console.error(error);
+      });
 
     console.log(photoURL, photo);
   };
