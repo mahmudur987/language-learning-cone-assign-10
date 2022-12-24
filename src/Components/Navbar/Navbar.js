@@ -53,23 +53,23 @@ const Navbar = () => {
         {/* profile +signout */}
 
         <div className=" flex  justify-end mr-1 ">
-          <div className=" border border-black p-2 shadow-2xl">
+          <div className=" border border-black p-1 shadow-2xlnpm run stttttart">
             {user ? (
               <div className="tooltip" data-tip={user?.displayName}>
-                <div className=" flex flex-col  items-center ">
-                  <Link to={"/profile"}>
-                    {" "}
-                    {user.photoURL ? (
+                <div className=" grid justify-center">
+                  <p>
+                    <Link to={"/profile"}>
                       <img
-                        className="w-10 rounded-3xl "
+                        className="w-10 rounded-3xl mx-auto  "
                         src={user.photoURL}
                         alt=""
                       />
-                    ) : (
-                      user.displayName
-                    )}
-                    <p className="font-bold">{user.displayName}</p>{" "}
-                  </Link>
+                    </Link>
+                  </p>
+                  <p className="font-bold">
+                    {" "}
+                    <Link to={"/profile"}>{user.displayName}</Link>
+                  </p>{" "}
                 </div>
               </div>
             ) : (
@@ -95,6 +95,9 @@ const Navbar = () => {
           </p>
           <p className="mx-3 text-amber-800  hover:text-blue-500">
             <Link to={"/blog"}> Blog</Link>
+          </p>
+          <p className="mx-3 text-amber-800  hover:text-blue-500">
+            <Link to={"/register"}> Register</Link>
           </p>
           <p className="mx-3 text-amber-800  hover:text-blue-500">
             <Link to={"/liflet"}>Leaflet</Link>

@@ -7,7 +7,6 @@ import { authContext } from "../../UserContext/UserContext";
 const SignUp = () => {
   const { signUp, updateUserProfile } = useContext(authContext);
   const [error, SetError] = useState("");
-
   const [photo, setphoto] = useState(null);
 
   const navigate = useNavigate();
@@ -17,25 +16,40 @@ const SignUp = () => {
     event.preventDefault();
     const form = event.target;
     const name = form.name.value;
-    const photoURL = form.photoUrl.value;
     const email = form.email.value;
     const password = form.password.value;
 
-    signUp(email, password)
-      .then((result) => {
-        const user = result.user;
-        handleUpdateProfile(name, photoURL);
-        navigate(from, { replace: true });
+    const imageData = new FormData();
+    imageData.append("image", photo);
 
-        console.log(user);
-      })
-      .catch((error) => {
-        const errorMessage = error.message;
-        SetError(errorMessage);
-        console.error(error);
+    const url =
+      "https://api.imgbb.com/1/upload?key=02b8716b08c03a0ba7282f83767ec3fe";
+    fetch(url, {
+      method: "POST",
+      body: imageData,
+    })
+      .then((res) => res.json())
+      .then((imagedata) => {
+        console.log(imagedata);
+        const photoURL = imagedata.data.display_url;
+        if (imagedata.success) {
+          signUp(email, password)
+            .then((result) => {
+              const user = result.user;
+              handleUpdateProfile(name, photoURL);
+              navigate(from, { replace: true });
+
+              console.log(user);
+            })
+            .catch((error) => {
+              const errorMessage = error.message;
+              SetError(errorMessage);
+              console.error(error);
+            });
+        }
       });
 
-    console.log(photoURL, photo);
+    console.log(photo);
   };
 
   const handleUpdateProfile = (name, photoURL) => {
@@ -88,7 +102,7 @@ const SignUp = () => {
                 required
                 name="photoUrl"
                 placeholder="photo URL"
-                onChange={(e) => setphoto(e.target.value)}
+                onChange={(e) => setphoto(e.target.files[0])}
                 className="input input-bordered"
                 id=""
               />
