@@ -7,8 +7,9 @@ import Home from "../../Components/Home/Home";
 import Leaflet from "../../Components/Leaflet/Leaflet";
 import Login from "../../Components/Login/Login";
 import Maintain from "../../Components/Maintain/Maintain";
+import MyBookings from "../../Components/MuBookings/MyBookings";
 import Profile from "../../Components/Profile/Profile";
-import Register from "../../Components/Register/Register";
+
 import SignUp from "../../Components/SignUp/SignUp";
 import Main from "../../Layouts/Main";
 import PrivatRoutes from "../PrivetRoute/PrivetRoute";
@@ -49,8 +50,8 @@ const route = createBrowserRouter([
         ),
       },
       {
-        path: "/register",
-        element: <Register></Register>,
+        path: "/mybooking",
+        element: <MyBookings></MyBookings>,
       },
       {
         path: "/signup",
@@ -61,12 +62,16 @@ const route = createBrowserRouter([
         element: <SignUp></SignUp>,
       },
       {
-        path: "/cheakout",
+        path: "/cheakout/:id",
         element: (
           <PrivatRoutes>
             <Cheakout></Cheakout>
           </PrivatRoutes>
         ),
+        loader: async ({ params }) =>
+          fetch(
+            `https://language-learning-server.vercel.app/cheakout/${params.id}`
+          ),
       },
       {
         path: "/profile",

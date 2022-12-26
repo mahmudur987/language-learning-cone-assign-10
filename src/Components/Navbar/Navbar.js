@@ -97,7 +97,7 @@ const Navbar = () => {
             <Link to={"/blog"}> Blog</Link>
           </p>
           <p className="mx-3 text-amber-800  hover:text-blue-500">
-            <Link to={"/register"}> Register</Link>
+            <Link to={"/mybooking"}> My Bookings</Link>
           </p>
           <p className="mx-3 text-amber-800  hover:text-blue-500">
             <Link to={"/liflet"}>Leaflet</Link>

@@ -1,50 +1,197 @@
-import React from 'react';
-import { useContext } from 'react';
-import { authContext } from '../../UserContext/UserContext';
-import html2canvas from 'html2canvas';
-import jsPDF from 'jspdf';
-import { FaDownload } from 'react-icons/fa';
-
-
+import React, { useReducer } from "react";
+import { useContext } from "react";
+import { toast } from "react-hot-toast";
+import { useLoaderData } from "react-router-dom";
+import { authContext } from "../../UserContext/UserContext";
 
 const Cheakout = () => {
-    const { cart, user } = useContext(authContext);
-    const downloadpdf = () => {
-        html2canvas(document.getElementById('premmium')).then(canvas => {
+  const { user } = useContext(authContext);
+  const course = useLoaderData();
+  // console.log(course);
+  // console.log(user);
 
-            const imgData = canvas.toDataURL('image/png');
-            const pdf = new jsPDF();
-            pdf.addImage(imgData, 'PNG', 0, 0);
-            pdf.save("download.pdf");
-        });
+  const initialState = {
+    studentName: user.displayName,
+    studentEmail: user.email,
+    studentPhone: 0,
+    studentPhoto: user.photoURL,
+    courseName: course.name,
+    courseDetail: course.title,
+    batch: course.company,
+    price: course.price,
+    courseEmail: course.email,
+    coursePhone: course.phone,
+  };
+  const reducer = (state, action) => {
+    // console.log(action);
+    switch (action.type) {
+      case "INPUT":
+        return {
+          ...state,
+          [action.payload.name]: action.payload.value,
+        };
+      default:
+        return state;
     }
-    return (
-        <div id='premmium' className='p-4 border border-blue-600 m-5 rounded-lg grid grid-cols-1 lg :grid-cols-2 relative'>
-            <div>
-                <h1 className='text-3xl text-center font-extrabold text-green-700'>Premmium Access </h1>
-                <h1 className='text-2xl font-bold m-5 text-rose-700 '> Course Name :{cart.name}</h1>
-                <h1 className='text-xl font-bold m-5 '> Course title :{cart.title}</h1>
-                <h1 className='text-xl font-bold m-5 '> Group Name :{cart.company}</h1>
-                <h1 className='text-xl font-bold m-5 '> Phone number :{cart.phone}</h1>
-                <h1 className='text-xl font-bold m-5 '> Price:{cart.price}</h1>
+  };
+  const [state, dispatch] = useReducer(reducer, initialState);
 
+  const handleConfirm = (e) => {
+    e.preventDefault();
 
-            </div>
-            <div>
-                <h1 className='text-xl md:text-center font-extrabold '>Student name : <span className='text-2xl font-mono'>{user?.displayName}</span> </h1>
-                <h1 className='text-xl  md:text-center font-extrabold '>Student Email : <span className='md:text-2xl text-lg   font-mono'>{user?.email}</span> </h1>
+    // console.log(state);
+    const url = "https://language-learning-server.vercel.app/bookings";
 
-                <button className='btn btn-info font-bold'>Confirm</button>
+    fetch(url, {
+      method: "POST", // or 'PUT'
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(state),
+    })
+      .then((response) => {
+        // console.log(response.status);
+        if (response.status === 401) {
+          toast.error(
+            "you already bookd this course,try with another Email and PhoneNumber "
+          );
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log("Success:", data);
 
-                <button onClick={downloadpdf} className='btn btn-info font-bold absolute bottom-0 right-1'> <FaDownload></FaDownload>  </button>
-            </div>
+        if (data.acknowledged) {
+          toast.success(
+            "you have to access to  Mandira chiness language course"
+          );
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  };
 
-
-
-
-
+  return (
+    <div
+      id="premmium"
+      className="p-4 border border-blue-600 m-5 rounded-lg grid relative"
+    >
+      <div>
+        <h1 className="text-3xl text-center font-extrabold text-green-700">
+          Premmium Access{" "}
+        </h1>
+      </div>
+      <form onSubmit={handleConfirm} className="p-4 mb-5">
+        <div className="avatar online placeholder">
+          <div className="bg-neutral-focus text-neutral-content rounded-full w-16">
+            <img src={user.photoURL} alt="" />
+          </div>
         </div>
-    );
+        <h1 className=" font-extrabold ">
+          Student name :
+          <input
+            readOnly
+            type="text"
+            name=" studentName"
+            defaultValue={user?.displayName}
+            className="text-2xl font-mono"
+          />
+        </h1>
+        <h1 className=" font-extrabold">
+          Student Email :
+          <input
+            readOnly
+            type="text"
+            name=" stdentEmail"
+            defaultValue={user?.email}
+            className="   font-mono w-2/3    "
+          />
+        </h1>
+        <h1 className=" font-extrabold">
+          Student Phone :
+          <input
+            onBlur={(e) =>
+              dispatch({
+                type: "INPUT",
+                payload: { name: e.target.name, value: e.target.value },
+              })
+            }
+            required
+            type="studentPhone"
+            name="studentPhone"
+            className="  border border-black rounded-lg  font-mono w-2/3    "
+          />
+        </h1>
+        <h1 className=" font-extrabold">
+          Course Name:
+          <input
+            readOnly
+            type="text"
+            name="courseName"
+            defaultValue={course.name}
+            className="   font-mono w-2/3    "
+          />
+        </h1>
+        <h1 className=" font-extrabold">
+          Course Detail:
+          <input
+            readOnly
+            type="text"
+            name="courseDetail"
+            defaultValue={course.title}
+            className="   font-mono w-2/3    "
+          />
+        </h1>
+        <h1 className=" font-extrabold">
+          Batch:
+          <input
+            readOnly
+            type="text"
+            name="batch"
+            defaultValue={course.company}
+            className="   font-mono w-2/3    "
+          />
+        </h1>
+        <h1 className=" font-extrabold">
+          Price:
+          <input
+            readOnly
+            type="text"
+            name="price"
+            defaultValue={course.price}
+            className="   font-mono w-2/3    "
+          />
+        </h1>
+        <h1 className=" font-extrabold text-red-500">
+          For Emergency
+          <p className="text-black ">
+            Course Email :{" "}
+            <input
+              readOnly
+              type="text"
+              name="courseEmail"
+              defaultValue={course.email}
+              className="  font-mono w-2/3    "
+            />
+          </p>
+          <p className="text-black ">
+            Phone :
+            <input
+              readOnly
+              type="text"
+              name="coursePhone"
+              defaultValue={course.phone}
+              className="   font-mono w-2/3    "
+            />
+          </p>
+        </h1>
+        <button className="btn btn-info btn-sm absolute right-4 bottom-4">
+          Confirm
+        </button>
+      </form>
+    </div>
+  );
 };
 
 export default Cheakout;
