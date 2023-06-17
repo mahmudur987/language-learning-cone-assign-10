@@ -1,11 +1,10 @@
 import React, { useContext, useEffect } from "react";
 import { useState } from "react";
-
-import Course from "../Course/Course";
 import { authContext } from "../../UserContext/UserContext";
+import Course from "../Course/Course";
 import Loading from "../Loading/Loading";
 
-const Courses = () => {
+const HomeCourses = () => {
   const { loading, Setloading } = useContext(authContext);
   const [courses, SetCourses] = useState([]);
   useEffect(() => {
@@ -25,7 +24,7 @@ const Courses = () => {
       <h1 className="text-3xl font-bold text-yellow-700">All Courses </h1>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-        {courses?.map((course) => (
+        {courses?.slice(0, 3).map((course) => (
           <Course key={course._id} course={course}></Course>
         ))}
       </div>
@@ -33,4 +32,4 @@ const Courses = () => {
   );
 };
 
-export default Courses;
+export default HomeCourses;

@@ -1,7 +1,7 @@
 import React, { useReducer } from "react";
 import { useContext } from "react";
 import { toast } from "react-hot-toast";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import { authContext } from "../../UserContext/UserContext";
 
 const Cheakout = () => {
@@ -13,7 +13,7 @@ const Cheakout = () => {
   const initialState = {
     studentName: user.displayName,
     studentEmail: user.email,
-    studentPhone: 0,
+    studentPhone: "",
     studentPhoto: user.photoURL,
     courseName: course.name,
     courseDetail: course.title,
@@ -39,7 +39,9 @@ const Cheakout = () => {
   const handleConfirm = (e) => {
     e.preventDefault();
 
-    // console.log(state);
+    if (!state.studentPhone) {
+      return toast.error("please add aphone number");
+    }
     const url = "https://language-learning-server.vercel.app/bookings";
 
     fetch(url, {
@@ -50,11 +52,8 @@ const Cheakout = () => {
       body: JSON.stringify(state),
     })
       .then((response) => {
-        // console.log(response.status);
         if (response.status === 401) {
-          toast.error(
-            "you already bookd this course,try with another Email and PhoneNumber "
-          );
+          toast.error("you already bookd this course");
         }
         return response.json();
       })
@@ -73,16 +72,13 @@ const Cheakout = () => {
   };
 
   return (
-    <div
-      id="premmium"
-      className="p-4 border border-blue-600 m-5 rounded-lg grid relative"
-    >
+    <div id="premmium" className="p-4 border shadow-xl m-5 rounded-lg ">
       <div>
         <h1 className="text-3xl text-center font-extrabold text-green-700">
           Premmium Access{" "}
         </h1>
       </div>
-      <form onSubmit={handleConfirm} className="p-4 mb-5">
+      <form className="p-4 mb-5">
         <div className="avatar online placeholder">
           <div className="bg-neutral-focus text-neutral-content rounded-full w-16">
             <img src={user.photoURL} alt="" />
@@ -186,9 +182,11 @@ const Cheakout = () => {
             />
           </p>
         </h1>
-        <button className="btn btn-info btn-sm absolute right-4 bottom-4">
-          Confirm
-        </button>
+        <div className="flex justify-end  gap-6 ">
+          <button onClick={handleConfirm} className="btn btn-info btn-sm ">
+            Add Bookings
+          </button>
+        </div>
       </form>
     </div>
   );

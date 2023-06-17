@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { authContext } from "../../UserContext/UserContext";
+import MyBookings from "../MuBookings/MyBookings";
 
 const Profile = () => {
   const { user } = useContext(authContext);
@@ -22,11 +23,11 @@ const Profile = () => {
   };
 
   return (
-    <div className="  bg-base-200 p-5 md:w-2/3 mx-auto">
+    <div className=" p-5 md:w-2/3 mx-auto">
       <div className=" justify-start">
         <h1 className=" my-10  text-center text-3xl font-bold">My Profile</h1>
 
-        <div className="card shadow-2xl  bg-base-100 ">
+        <div className="card shadow-2xl">
           <form onSubmit={handleSubmit} className="card-body">
             <div className="form-control">
               <label className="label">
@@ -82,12 +83,13 @@ const Profile = () => {
       </div>
 
       <div className="m-5">
-        <Link
-          to={"/mybooking"}
-          className=" my-10  text-center text-3xl font-bold hover:text-blue-500"
-        >
+        <Link className=" my-10  text-center text-3xl font-bold hover:text-blue-500">
           My Bookings
         </Link>
+
+        <div>
+          <MyBookings />
+        </div>
       </div>
     </div>
   );

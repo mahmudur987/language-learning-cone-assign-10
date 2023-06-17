@@ -6,7 +6,7 @@ const Course = ({ course }) => {
 
   //   console.log(course);
   return (
-    <div className="card card-compact  bg-green-100 shadow-xl">
+    <div className="card card-compact  shadow-xl">
       <figure>
         <img className="h-48 w-full" src={picture} alt="Shoes" />
       </figure>

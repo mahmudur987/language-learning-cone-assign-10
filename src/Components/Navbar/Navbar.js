@@ -4,26 +4,22 @@ import { Link } from "react-router-dom";
 import { authContext } from "../../UserContext/UserContext";
 import { FaUser } from "react-icons/fa";
 import { useState } from "react";
+import { toast } from "react-hot-toast";
 
 const Navbar = () => {
   const { user, logout, theme, SetTheme } = useContext(authContext);
-  // const [theme, SetTheme] = useState(true);
+
   const handletheme = () => {
     SetTheme(!theme);
   };
   const handleLogOut = () => {
     logout()
-      .then(() => {
-        // Sign-out successful.
-      })
-      .catch((error) => {
-        // An error happened.
-      });
+      .then(() => {})
+      .catch((error) => {});
   };
-  // console.log(user)
 
   return (
-    <div className=" grid gap-3 bg-purple-100  xl:flex xl:justify-between font-mono py-10 mb-10  relative">
+    <div className=" grid gap-3  xl:flex xl:justify-between font-mono py-10 mb-10  relative">
       {/* theme */}
       <div className="mx-5 w-32 absolute top-0 right-0">
         <button onClick={handletheme}>
@@ -53,7 +49,7 @@ const Navbar = () => {
         {/* profile +signout */}
 
         <div className=" flex  justify-end mr-1 ">
-          <div className=" border border-black p-1 shadow-2xlnpm run stttttart">
+          <div className=" border shadow-2xl">
             {user ? (
               <div className="tooltip" data-tip={user?.displayName}>
                 <div className=" grid justify-center">
@@ -73,9 +69,13 @@ const Navbar = () => {
                 </div>
               </div>
             ) : (
-              <div className="text-xl mx-8">
-                {" "}
-                <FaUser></FaUser>{" "}
+              <div
+                onClick={() => {
+                  toast.error("please log In first");
+                }}
+                className="text-xl mx-2"
+              >
+                <FaUser></FaUser>
               </div>
             )}
           </div>
@@ -100,7 +100,7 @@ const Navbar = () => {
             <Link to={"/mybooking"}> My Bookings</Link>
           </p>
           <p className="mx-3 text-amber-800  hover:text-blue-500">
-            <Link to={"/liflet"}>Leaflet</Link>
+            <Link to={"/contact"}>Contact</Link>
           </p>
 
           {user ? (
@@ -115,9 +115,6 @@ const Navbar = () => {
             <>
               <p className="mx-3 text-amber-800  hover:text-blue-500">
                 <Link to={"/login"}>Login</Link>
-              </p>
-              <p className="mx-3 text-amber-800  hover:text-blue-500">
-                <Link to={"/signup"}>Sign Up</Link>
               </p>
             </>
           )}

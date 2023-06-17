@@ -67,8 +67,8 @@ const SignUp = () => {
   };
 
   return (
-    <div className="hero min-h-screen bg-base-200">
-      <div className="hero-content flex-col lg:flex-row-reverse">
+    <div className="hero min-h-[500]  ">
+      <div className="hero-content border flex-col lg:flex-row-reverse">
         <div className="text-center lg:text-left">
           <h1 className="text-5xl font-bold">Sign Up!</h1>
           <p className="py-6">
@@ -79,11 +79,11 @@ const SignUp = () => {
             </Link>
           </p>
         </div>
-        <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+        <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl">
           <form onSubmit={handleSubmit} className="card-body">
             <div className="form-control">
               <label className="label">
-                <span className="label-text">Name</span>
+                <span className="font-bold">Name</span>
               </label>
               <input
                 required
@@ -95,7 +95,7 @@ const SignUp = () => {
             </div>
             <div className="form-control">
               <label className="label">
-                <span className="label-text">choose Photo</span>
+                <span className="font-bold">choose Photo</span>
               </label>
               <input
                 type="file"
@@ -109,7 +109,7 @@ const SignUp = () => {
             </div>
             <div className="form-control">
               <label className="label">
-                <span className="label-text">Email</span>
+                <span className="font-bold">Email</span>
               </label>
               <input
                 required
@@ -122,7 +122,7 @@ const SignUp = () => {
 
             <div className="form-control">
               <label className="label">
-                <span className="label-text">Password</span>
+                <span className="font-bold">Password</span>
               </label>
               <input
                 required

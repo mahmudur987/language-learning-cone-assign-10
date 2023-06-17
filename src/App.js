@@ -8,7 +8,7 @@ function App() {
   const { theme } = useContext(authContext);
   return (
     <div
-      className={` ${theme ? "bg-slate-400" : " bg-slate-100"}`}
+      className={` ${theme ? "bg-black text-white" : ""}`}
       data-theme="cupcake"
     >
       <RouterProvider router={route}></RouterProvider>

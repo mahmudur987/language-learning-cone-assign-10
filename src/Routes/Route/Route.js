@@ -4,15 +4,15 @@ import Cheakout from "../../Components/CheakOut/Cheakout";
 import CourseDetail from "../../Components/CourseDetail/CourseDetail";
 import Courses from "../../Components/Courses/Courses";
 import Home from "../../Components/Home/Home";
-import Leaflet from "../../Components/Leaflet/Leaflet";
 import Login from "../../Components/Login/Login";
 import Maintain from "../../Components/Maintain/Maintain";
 import MyBookings from "../../Components/MuBookings/MyBookings";
 import Profile from "../../Components/Profile/Profile";
-
 import SignUp from "../../Components/SignUp/SignUp";
 import Main from "../../Layouts/Main";
 import PrivatRoutes from "../PrivetRoute/PrivetRoute";
+import ContactUs from "../../Components/ContactUs/ContactUs";
+import ConfirmedPaymentPage from "../../Components/ConfirmPayment/ConfirmPayment";
 
 const route = createBrowserRouter([
   {
@@ -42,16 +42,15 @@ const route = createBrowserRouter([
       },
       {
         path: "/blog",
-        element: (
-          <PrivatRoutes>
-            {" "}
-            <Blog></Blog>{" "}
-          </PrivatRoutes>
-        ),
+        element: <Blog></Blog>,
       },
       {
         path: "/mybooking",
-        element: <MyBookings></MyBookings>,
+        element: (
+          <PrivatRoutes>
+            <MyBookings />
+          </PrivatRoutes>
+        ),
       },
       {
         path: "/signup",
@@ -82,12 +81,20 @@ const route = createBrowserRouter([
         ),
       },
       {
-        path: "/liflet",
-        element: <Leaflet></Leaflet>,
+        path: "/confirmpayment/:id",
+        element: (
+          <PrivatRoutes>
+            <ConfirmedPaymentPage />
+          </PrivatRoutes>
+        ),
+      },
+      {
+        path: "/contact",
+        element: <ContactUs />,
       },
       {
         path: "*",
-        element: <Maintain></Maintain>,
+        element: <Maintain />,
       },
     ],
   },
